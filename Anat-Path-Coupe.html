@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Coupe de Anatomie Pathologique - Exercices</title>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+</head>
+<body>
+	<nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top" >
+		<a class="navbar-brand" href="#">Quizz Anapath</a>
+	  </nav>
+
+	<main role="main" class="container" style="margin-top: 100px;">
+		<div style="text-align: center;">
+			<button onclick="ShowRandom()" style="margin: 50px;" class="btn btn-primary">Coupe suivante</button>
+			<br />
+			<div class="alert alert-primary" style="visibility:hidden;" id="answer" role="alert">
+
+			</div>
+		</div>
+	</main>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script>
+let data = new Array(
+	{url:"http://hosting.umons.ac.be/CoupesHistologie/AnatPath/2012-2013/038.htm", name:"Métastase hépatique d’un adénocarcinome colique"},
+	{url:"http://hosting.umons.ac.be/CoupesHistologie/AnatPath/Tumeur_benigne/03H4114_5.htm", name:"Adénome tubulo-villeux du colon (dysplasie modérée) "},
+	{url:"http://hosting.umons.ac.be/CoupesHistologie/AnatPath/Surcharge/97H7142_B1.htm", name:"Fibrose pulmonaire "},
+	{url:"http://hosting.umons.ac.be/CoupesHistologie/AnatPath/Inflammation/09A97_3.htm", name:"Tuberculose pulmonaire "},
+	{url:"http://hosting.umons.ac.be/CoupesHistologie/AnatPath/2013-2014/07.htm", name:"Adénocarcinome de la prostate. "},
+	{url:"http://hosting.umons.ac.be/CoupesHistologie/AnatPath/Surcharge/03H4117.htm", name:"Mélanose colique "},
+	{url:"http://hosting.umons.ac.be/CoupesHistologie/AnatPath/2013-2014/03.htm", name:"CIN3 col de l'utérus. "},
+	{url:"http://hosting.umons.ac.be/CoupesHistologie/AnatPath/2012-2013/069.htm", name:"Tuberculose ganglionnaire "},
+	{url:"http://hosting.umons.ac.be/CoupesHistologie/AnatPath/2012-2013/076.htm", name:"Adénocarcinome de la prostate"},
+	{url:"http://hosting.umons.ac.be/CoupesHistologie/AnatPath/Inflammation/06A131_25.htm", name:"Séquelles d'infarctus myocardique "},
+	{url:"http://hosting.umons.ac.be/CoupesHistologie/AnatPath/Cancer/08H2501_3.htm", name:"Carcinome urothélial de type papillaire au niveau du rein"},
+	{url:"http://hosting.umons.ac.be/CoupesHistologie/AnatPath/Surcharge/06A25_39.htm", name:"Anévrysme de l'aorte abdominale"},
+	{url:"http://hosting.umons.ac.be/CoupesHistologie/AnatPath/2012-2013/061.htm", name:"Mésothéliome envahissant le myocarde"},
+	{url:"http://hosting.umons.ac.be/CoupesHistologie/AnatPath/2013-2014/02.htm", name:"Hémorroïdes thrombosées. "},
+	{url:"http://hosting.umons.ac.be/CoupesHistologie/AnatPath/Cancer/04H3891.htm", name:"Adénocarcinome colique (biopsie) "},
+	{url:"http://hosting.umons.ac.be/CoupesHistologie/AnatPath/Surcharge/04H11017_B2.htm", name:"Cirrhose hépatique "},
+	{url:"http://hosting.umons.ac.be/CoupesHistologie/AnatPath/Infarctus/06A43_5.htm", name:"Infractus pulmonaire "},
+	{url:"http://hosting.umons.ac.be/CoupesHistologie/AnatPath/2012-2013/039.htm", name:"Glioblastome"},
+	{url:"http://hosting.umons.ac.be/CoupesHistologie/AnatPath/Infarctus/06A16_25.htm", name:"Infarctus pulmonaire "},
+	{url:"http://hosting.umons.ac.be/CoupesHistologie/AnatPath/Surcharge/06A116_11_BLANC.htm", name:"Stéatose hépatique "},
+	{url:"http://hosting.umons.ac.be/CoupesHistologie/AnatPath/2013-2014/04.htm", name:"Schwannome "},
+	{url:"http://hosting.umons.ac.be/CoupesHistologie/AnatPath/Inflammation/04H3047_T2.htm", name:"Tuberculose ganglionnaire "},
+	{url:"http://hosting.umons.ac.be/CoupesHistologie/AnatPath/Tumeur_benigne/08H3163_2.htm", name:"Hyperplasie adénomyomateuse bénigne de la prostate "},
+	{url:"http://hosting.umons.ac.be/CoupesHistologie/AnatPath/2012-2013/025.htm", name:"Arthrite aiguë "},
+	{url:"http://hosting.umons.ac.be/CoupesHistologie/AnatPath/Surcharge/06A43_22.htm", name:"Nodule silicotique dans ganglion "},
+	{url:"http://hosting.umons.ac.be/CoupesHistologie/AnatPath/Surcharge/06A143_4.htm", name:"Oedème pulmonaire"},
+	{url:"http://hosting.umons.ac.be/CoupesHistologie/AnatPath/Cancer/08H2519_7.htm", name:"Carcinome rénal à cellules claires "},
+	{url:"http://hosting.umons.ac.be/CoupesHistologie/AnatPath/Inflammation/03H10330_1_11.htm", name:"Inflammation aigue pulmonaire "},
+	{url:"http://hosting.umons.ac.be/CoupesHistologie/AnatPath/Inflammation/06A88_9.htm", name:"Infarctus myocardique ancien "},
+	{url:"http://hosting.umons.ac.be/CoupesHistologie/AnatPath/Surcharge/03H1437_2.htm", name:"Sarcoidose dans un ganglion (fragmenté) "},
+	{url:"http://hosting.umons.ac.be/CoupesHistologie/AnatPath/2013-2014/01.htm", name:"Carcinome épidermoïde in situ de la peau. "},
+	{url:"http://hosting.umons.ac.be/CoupesHistologie/AnatPath/2012-2013/067.htm", name:"Carcinome rénal à cellules claires "},
+	{url:"http://hosting.umons.ac.be/CoupesHistologie/AnatPath/2013-2014/05.htm", name:"Kératose séborrhéique peau "},
+	{url:"http://hosting.umons.ac.be/CoupesHistologie/AnatPath/2012-2013/040.htm", name:"Adénocarcinome prostatique"},
+	{url:"http://hosting.umons.ac.be/CoupesHistologie/AnatPath/Surcharge/06A25_11.htm", name:"Congestion vasculaire hépatique "},
+	{url:"http://hosting.umons.ac.be/CoupesHistologie/AnatPath/Infarctus/03H10837_B2.htm", name:"Infarctus splénique "},
+	{url:"http://hosting.umons.ac.be/CoupesHistologie/AnatPath/Inflammation/06A25_9.htm", name:"Infarctus myocardique ancien "},
+	{url:"http://hosting.umons.ac.be/CoupesHistologie/AnatPath/Inflammation/03H10330_2_3.htm", name:"Inflammation aigue de la bronche "},
+	{url:"http://hosting.umons.ac.be/CoupesHistologie/AnatPath/2014-2015/02.htm", name:"Maladie de Gaucher. "},
+	{url:"http://hosting.umons.ac.be/CoupesHistologie/AnatPath/Inflammation/08H11594_NP1_1.htm", name:"Abcès pulmonaire "},
+	{url:"http://hosting.umons.ac.be/CoupesHistologie/AnatPath/Surcharge/97H7142_B6.htm", name:"Fibrose pulmonaire "},
+	{url:"http://hosting.umons.ac.be/CoupesHistologie/AnatPath/Cancer/03H3408_B2.htm", name:"Adénocarcinome du colon "},
+	{url:"http://hosting.umons.ac.be/CoupesHistologie/AnatPath/2012-2013/030.htm", name:"Foie de stase "},
+	{url:"http://hosting.umons.ac.be/CoupesHistologie/AnatPath/Tumeur_benigne/08H873_31.htm", name:"Adénome micro-normo-folliculaire de la thyroide "},
+	{url:"http://hosting.umons.ac.be/CoupesHistologie/AnatPath/2014-2015/01.htm", name:"Gastrite. "},
+	{url:"http://hosting.umons.ac.be/CoupesHistologie/AnatPath/2012-2013/065.htm", name:"Appendicite aigue "},
+	{url:"http://hosting.umons.ac.be/CoupesHistologie/AnatPath/2012-2013/027.htm", name:"Arthrite chronique "},
+	{url:"http://hosting.umons.ac.be/CoupesHistologie/AnatPath/Surcharge/06A37_7.htm", name:"Oedème pulmonaire "},
+	{url:"http://hosting.umons.ac.be/CoupesHistologie/AnatPath/Inflammation/06A37_2.htm", name:"Oesophagite herpétique "},
+	{url:"http://hosting.umons.ac.be/CoupesHistologie/AnatPath/2014-2015/03.htm", name:"Rectocolite ulcéro-hémorragique. "},
+	{url:"http://hosting.umons.ac.be/CoupesHistologie/AnatPath/2012-2013/021.htm", name:"Infarctus hépatique "},
+	{url:"http://hosting.umons.ac.be/CoupesHistologie/AnatPath/Cancer/01H14443_B3.htm", name:"ADC colique moyennement différencié "},
+	{url:"http://hosting.umons.ac.be/CoupesHistologie/AnatPath/2012-2013/053.htm", name:"Sarcoïdose ganglionnaire "},
+	{url:"http://hosting.umons.ac.be/CoupesHistologie/AnatPath/2012-2013/022.htm", name:"Infarctus grêle "},
+	{url:"http://hosting.umons.ac.be/CoupesHistologie/AnatPath/Infarctus/06A43_24.htm", name:"Infractus pulmonaire "},
+	{url:"http://hosting.umons.ac.be/CoupesHistologie/AnatPath/2012-2013/062.htm", name:"Mésothéliome"},
+	{url:"http://hosting.umons.ac.be/CoupesHistologie/AnatPath/Inflammation/04H3047_T1_1.htm", name:"Tuberculose ganglionnaire "},
+	{url:"http://hosting.umons.ac.be/CoupesHistologie/AnatPath/Surcharge/06A25_40.htm", name:"Anévrysme de l'aorte abdominale"},
+	{url:"http://hosting.umons.ac.be/CoupesHistologie/AnatPath/2012-2013/078.htm", name:"Adénome pléiomorphe de la parotide "},
+	{url:"http://hosting.umons.ac.be/CoupesHistologie/AnatPath/2013-2014/06.htm", name:"Diverticulose colique. "},
+	{url:"http://hosting.umons.ac.be/CoupesHistologie/AnatPath/Infarctus/04A151_6.htm", name:"Infarctus pulmonaire "},
+	{url:"http://hosting.umons.ac.be/CoupesHistologie/AnatPath/Infarctus/04A63_13.htm", name:"Infarctus rénal "},
+	{url:"http://hosting.umons.ac.be/CoupesHistologie/AnatPath/Inflammation/04H3047_T3.htm", name:"Tuberculose ganglionnaire "},
+	{url:"http://hosting.umons.ac.be/CoupesHistologie/AnatPath/Surcharge/06A97_23.htm", name:"Oedème pulmonaire "},
+	{url:"http://hosting.umons.ac.be/CoupesHistologie/AnatPath/Infarctus/06A12_27.htm", name:"Infarctus myocardique "},
+	{url:"http://hosting.umons.ac.be/CoupesHistologie/AnatPath/Inflammation/04H3047_T1_2.htm", name:"Tuberculose ganglionnaire "},
+	{url:"http://hosting.umons.ac.be/CoupesHistologie/AnatPath/Surcharge/06A88_11.htm", name:"Cholestase et stéatose hépatique "},
+	{url:"http://hosting.umons.ac.be/CoupesHistologie/AnatPath/Cancer/03H4480_4.htm", name:"Métastase pulmonaire d'un adénocarcinome colique"},
+	{url:"http://hosting.umons.ac.be/CoupesHistologie/AnatPath/2012-2013/043.htm", name:"Adénomyose utérine "},
+	{url:"http://hosting.umons.ac.be/CoupesHistologie/AnatPath/2012-2013/063.htm", name:"Adénome colique tubulo-villeux "},
+	{url:"http://hosting.umons.ac.be/CoupesHistologie/AnatPath/2012-2013/044.htm", name:"Carcinome urothélial papillaire"},
+	{url:"http://hosting.umons.ac.be/CoupesHistologie/AnatPath/Inflammation/07H9016_2.htm", name:"Appendicite aiguë "},
+	{url:"http://hosting.umons.ac.be/CoupesHistologie/AnatPath/Surcharge/06A12_4.htm", name:"Anthracose pulmonaire "},
+	{url:"http://hosting.umons.ac.be/CoupesHistologie/AnatPath/Surcharge/06A114_24.htm", name:"Foie de stase "},
+	{url:"http://hosting.umons.ac.be/CoupesHistologie/AnatPath/2012-2013/046.htm", name:"Carcinome basocellulaire  "}
+);
+
+function ShowRandom()
+{
+	var content = data[Math.floor(Math.random() * data.length)];
+	var w = window.open(content.url);
+	setTimeout(function(){
+		$("#answer").html("Réponse: " + content.name);
+		$("#answer").css("visibility", "visible");
+		
+	},1000);
+}
+</script>
+</body>
+</html>
