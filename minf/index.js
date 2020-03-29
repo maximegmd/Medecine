@@ -50,7 +50,7 @@ var data = {
                 }
                 case 1:
                 {
-                    var question = "Laquelle de ces classes de molécules à pour cible " + correct.microcible;
+                    var question = "Laquelle de ces classes de molécules a pour cible " + correct.microcible;
                     var answer = "Les molécules de la classe " + correct.classe + " ont pour cible " + correct.microcible;
                     var answers = [];
                     answers.push({ text: correct.classe, correct: true});
