@@ -13,18 +13,18 @@ function shuffle(a) {
 var data = {
     Pharmaco : {
         data: [
-            {cible: "Paroi bactérienne", classe: "Beta-lactames", microcible:"Transpeptidase"},
-            {cible: "Paroi bactérienne", classe: "Glycopeptides", microcible:"Transpeptidase et transglycolases"},
-            {cible: "Paroi bactérienne", classe: "Peptide cyclique", microcible:"Lipides membranes gram positifs"},
-            {cible: "Synthèse protéique", classe: "Aminoglycosides", microcible:"Ribosomes"},
-            {cible: "Synthèse protéique", classe: "Tétracyclines", microcible:"Ribosomes"},
-            {cible: "Synthèse protéique", classe: "Macrolides", microcible:"Ribosomes"},
-            {cible: "Synthèse protéique", classe: "Lincosamides", microcible:"Ribosomes"},
-            {cible: "Synthèse protéique", classe: "Oxazolidinones", microcible:"Ribosomes"},
-            {cible: "Synthèse protéique", classe: "Mupirocine", microcible:"tRNA synthetase"},
-            {cible: "Acides nucléiques", classe: "Fluoroquinolones", microcible:"DNA gyrase et topoisomérase IV"},
-            {cible: "Anti métabolites", classe: "Sulfamethazole + trimethoprim = cotrimazol", microcible:"Inhibition synthèse acide folique"},
-            {cible: "Membrane céllulaire", classe: "Polypeptides cycliques", microcible:"Membrane lipidique"},
+            {cible: "la paroi bactérienne", classe: "Beta-lactames", microcible:"les transpeptidases"},
+            {cible: "la paroi bactérienne", classe: "Glycopeptides", microcible:"les transpeptidase et transglycolases"},
+            {cible: "la paroi bactérienne", classe: "Peptide cyclique", microcible:"les ipides membranes des gram positifs"},
+            {cible: "la synthèse protéique", classe: "Aminoglycosides", microcible:"les ribosomes"},
+            {cible: "la synthèse protéique", classe: "Tétracyclines", microcible:"les ribosomes"},
+            {cible: "la synthèse protéique", classe: "Macrolides", microcible:"les ribosomes"},
+            {cible: "la synthèse protéique", classe: "Lincosamides", microcible:"les ribosomes"},
+            {cible: "la synthèse protéique", classe: "Oxazolidinones", microcible:"les ribosomes"},
+            {cible: "la synthèse protéique", classe: "Mupirocine", microcible:"la tRNA synthetase"},
+            {cible: "les acides nucléiques", classe: "Fluoroquinolones", microcible:"la DNA gyrase et topoisomérase IV"},
+            {cible: "les anti métabolites", classe: "Sulfamethazole + trimethoprim = cotrimazol", microcible:"l'inhibition synthèse acide folique"},
+            {cible: "la membrane céllulaire", classe: "Polypeptides cycliques", microcible:"les membrane lipidiques"},
         ],
         generate: function() 
         {
