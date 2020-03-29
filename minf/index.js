@@ -15,7 +15,7 @@ var data = {
         data: [
             {cible: "la paroi bactérienne", classe: "Beta-lactames", microcible:"les transpeptidases"},
             {cible: "la paroi bactérienne", classe: "Glycopeptides", microcible:"les transpeptidase et transglycolases"},
-            {cible: "la paroi bactérienne", classe: "Peptide cyclique", microcible:"les ipides membranes des gram positifs"},
+            {cible: "la paroi bactérienne", classe: "Peptide cyclique", microcible:"les lipides membranaires des gram positifs"},
             {cible: "la synthèse protéique", classe: "Aminoglycosides", microcible:"les ribosomes"},
             {cible: "la synthèse protéique", classe: "Tétracyclines", microcible:"les ribosomes"},
             {cible: "la synthèse protéique", classe: "Macrolides", microcible:"les ribosomes"},
@@ -24,7 +24,7 @@ var data = {
             {cible: "la synthèse protéique", classe: "Mupirocine", microcible:"la tRNA synthetase"},
             {cible: "les acides nucléiques", classe: "Fluoroquinolones", microcible:"la DNA gyrase et topoisomérase IV"},
             {cible: "les anti métabolites", classe: "Sulfamethazole + trimethoprim = cotrimazol", microcible:"l'inhibition synthèse acide folique"},
-            {cible: "la membrane céllulaire", classe: "Polypeptides cycliques", microcible:"les membrane lipidiques"},
+            {cible: "la membrane cellulaire", classe: "Polypeptides cycliques", microcible:"les membrane lipidiques"},
         ],
         generate: function() 
         {
