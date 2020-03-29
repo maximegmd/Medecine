@@ -30,18 +30,47 @@ var data = {
         {
             var correct = this.data.sample();
 
-            var question = "Les molécules de la classe " + correct.classe + " ont pour cible :";
-            var answer = "Les molécules de la classe " + correct.classe + " ont pour cible " + correct.cible;
-            var answers = [];
-            answers.push({ text: correct.cible, correct: true});
+            var type = Math.floor(Math.random() * 2);
+            switch(type)
+            {
+                case 0:
+                {
+                    var question = "Les molécules de la classe " + correct.classe + " ont pour cible :";
+                    var answer = "Les molécules de la classe " + correct.classe + " ont pour cible " + correct.cible;
+                    var answers = [];
+                    answers.push({ text: correct.cible, correct: true});
 
-            while(answers.length < 5) {
-                var sample = this.data.sample();
-                if(answers.find(el => el.text == sample.cible) === undefined)
-                    answers.push({ text: sample.cible, correct: false });
+                    while(answers.length < 5) {
+                        var sample = this.data.sample();
+                        if(answers.find(el => el.text == sample.cible) === undefined)
+                            answers.push({ text: sample.cible, correct: false });
+                    }
+
+                    return { text: question, responses: shuffle(answers), correct: answer };  
+                }
+                case 1:
+                {
+                    var question = "Laquelle de ces classes de molécules à pour cible " + correct.microcible;
+                    var answer = "Les molécules de la classe " + correct.classe + " ont pour cible " + correct.microcible;
+                    var answers = [];
+                    answers.push({ text: correct.classe, correct: true});
+
+                    while(answers.length < 5) {
+                        var sample = this.data.sample();
+
+                        if(sample.microcible == correct.microcible)
+                            continue;
+
+                        if(answers.find(el => el.text == sample.classe) === undefined)
+                            answers.push({ text: sample.classe, correct: false });
+                    }
+
+                    return { text: question, responses: shuffle(answers), correct: answer };  
+                }
+                    
             }
 
-            return { text: question, responses: shuffle(answers), correct: answer };           
+                     
         }
     },
     "Pathologie" : []
