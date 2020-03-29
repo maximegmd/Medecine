@@ -1,6 +1,0 @@
-[submodule "Infectio/quizlib"]
-	path = Infectio/quizlib
-	url = https://github.com/ALPSquid/quizlib.git
-[submodule "quizlib"]
-	path = quizlib
-	url = https://github.com/ALPSquid/quizlib.git
