@@ -119,7 +119,7 @@ const data = new Array(
 	{name:"TP1 Lame 5 EBUS IHC p63", url:"http://hosting.umons.ac.be/html/coupeshistologie/anatpath/2015-2016/15C03288_p63.html"}, 
 	{name:"TP1 Lame 5 EBUS IHC TTF1", url:"http://hosting.umons.ac.be/html/coupeshistologie/anatpath/2015-2016/15C03288_TTF1.html"}, 
 	{name:"TP1 lame 4 Biopsie carcinome épidermoide", url:"http://hosting.umons.ac.be/html/coupeshistologie/anatpath/2015-2016/15H02990_1_BPBR_HE.html"}, 
-	{name:"TP1 Lame 4 Biopsie carcinome épidermoide IHC p63", url:"http://hosting.umons.ac.be/html/coupeshistologie/anatpath/2015-2016/15H02990_p63.html"},
+	{name:"TP1 Lame 4 Biopsie carcinome épidermoide IHC p63", url:"http://hosting.umons.ac.be/html/coupeshistologie/anatpath/2015-2016/15H02990_p63.html"}
 );
 
 function Shuffle(a) 
@@ -149,6 +149,8 @@ function ShowRandom()
 	}
 
 	current = mutableData.pop();
+
+	console.log(current.url);
 
 	$("#answer-text").html("");
 	$("#frame-slide").attr('src', current.url);
